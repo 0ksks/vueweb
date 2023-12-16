@@ -204,31 +204,32 @@ export default {
       if (this.passwordComfirm()==false)return;
       let result = await userRegisterService(this.registerData);
       if(result.code===0){
-        // this.notifyVue('success',result.message)
+        // this.notifyVue('success',result.message);
         alert(result.message);
         this.state = 'rig';
       }
       else{
-        // this.notifyVue('danger',result.message)
-        alert(result.message)
+        // this.notifyVue('danger',result.message);
+        alert(result.message);
       }
     },
     passwordComfirm(){
-      if(this.registerData.password!=this.registerData.passwordConfirm){
-        // this.notifyVue('danger',"两次密码不一样！")
-        alert("两次密码不一样！")
+      if (this.registerData.password != this.registerData.passwordConfirm) {
+        // this.notifyVue('danger',"两次密码不一样！");
+        alert("两次密码不一样！");
         return false;
       }
-      if(this.registerData.password=="" || this.registerData.username==""){
-        // this.notifyA('danger','用户名或密码为空','top','center')
-        alert("用户名或密码为空")
+      if (this.registerData.password == "" || 
+          this.registerData.username == "") {
+        // this.notifyA('danger','用户名或密码为空','top','center');
+        alert("用户名或密码为空");
         return false;
       }
       return true;
     },
-    notifyA(type,txt,verticalAlign, horizontalAlign) {
+    notifyA(type, txt, verticalAlign, horizontalAlign) {
       this.alertMsg = txt;
-      console.log(this.alertMsg)
+      console.log(this.alertMsg);
       this.$notify({
         component: NotificationTemplate,
         icon: "tim-icons icon-bell-55",

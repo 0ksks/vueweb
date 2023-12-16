@@ -118,7 +118,6 @@
 
 <script>
 import TopNavbar from "./TopNavbar.vue";
-import ContentFooter from "./ContentFooter.vue";
 import DashboardContent from "./DashboardContent.vue";
 import MobileMenu from "./MobileMenu.vue";
 import SideBar from "@/components/SidebarPlugin/SideBar.vue";
@@ -128,7 +127,6 @@ export default {
   components: {
     TopNavbar,
     DashboardContent,
-    ContentFooter,
     // eslint-disable-next-line vue/no-unused-components
     MobileMenu,
     SideBar,
