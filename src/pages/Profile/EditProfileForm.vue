@@ -22,13 +22,13 @@
       </div>
     </div>
     <template>
-      <base-button type="success" fill>Log in</base-button>
+      <base-button type="success" fill @click="login">Log in</base-button>
     </template>
     <template>
-      <base-button type="success" fill @click="state = 'rig'">Rigester</base-button>
+      <base-button type="success" fill @click="state = 'reg'">Register</base-button>
     </template>
   </card>
-  <card v-else-if="state=='rig'">
+  <card v-else-if="state=='reg'">
     <template slot="header">
       <h5 class="title">Register</h5>
     </template>
@@ -166,7 +166,7 @@
 </template>
 <script>
 import { Card, BaseInput } from "@/components/index";
-import { userRegisterService } from "@/api/user.js";
+import { userRegisterService,userLoginService } from "@/api/user.js";
 import BaseButton from "@/components/BaseButton";
 import NotificationTemplate from "../Notifications/NotificationTemplate"
 
@@ -193,7 +193,6 @@ export default {
         password:'',
         passwordConfirm:''
       },
-      alertMsg: 'aaa',
       notifications: {
         topCenter: false,
       },
@@ -204,39 +203,51 @@ export default {
       if (this.passwordComfirm()==false)return;
       let result = await userRegisterService(this.registerData);
       if(result.code===0){
-        // this.notifyVue('success',result.message);
-        alert(result.message);
-        this.state = 'rig';
+        this.notifyA('success',result.message,'top','center');
+        this.state = 'log';
       }
       else{
-        // this.notifyVue('danger',result.message);
-        alert(result.message);
+        this.notifyA('danger',result.message,'top','center');
+      }
+    },
+    async login(){
+      if (this.passwordComfirm()==false)return;
+      let result = await userLoginService(this.registerData);
+      if(result.code===0){
+        this.notifyA('success',result.message,'top','center');
+        this.state = 'info';
+      }
+      else{
+        this.notifyA('danger',result.message,'top','center');
       }
     },
     passwordComfirm(){
       if (this.registerData.password != this.registerData.passwordConfirm) {
-        // this.notifyVue('danger',"两次密码不一样！");
-        alert("两次密码不一样！");
+        this.notifyA('danger',"两次密码不一样！",'top','center');
         return false;
       }
       if (this.registerData.password == "" || 
           this.registerData.username == "") {
-        // this.notifyA('danger','用户名或密码为空','top','center');
-        alert("用户名或密码为空");
+        this.notifyA('danger','用户名或密码为空','top','center');
         return false;
       }
       return true;
     },
     notifyA(type, txt, verticalAlign, horizontalAlign) {
-      this.alertMsg = txt;
-      console.log(this.alertMsg);
+      this.notifications.msg = txt;
+      console.log(this.notifications.msg);
+      var icon;
+      if (type=="success")icon = "tim-icons icon-check-2";
+      else if (type=="danger")icon = "tim-icons icon-bell-55"
       this.$notify({
         component: NotificationTemplate,
-        icon: "tim-icons icon-bell-55",
+        icon: icon,
         horizontalAlign: horizontalAlign,
         verticalAlign: verticalAlign,
         type: type,
-        timeout: 0,
+        timeout: 2000,
+        message: txt,
+        closeOnClick: false,
       });
     },
   },

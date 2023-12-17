@@ -102,14 +102,12 @@
       </sidebar-link>
     </side-bar>
 
-    <sidebar-share :background-color.sync="backgroundColor"></sidebar-share>
+    
 
     <div class="main-panel" :data="backgroundColor">
       <top-navbar></top-navbar>
 
       <dashboard-content @click.native="toggleSidebar"></dashboard-content>
-
-      <content-footer></content-footer>
     </div>
   </div>
 </template>
