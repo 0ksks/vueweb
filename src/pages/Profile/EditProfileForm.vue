@@ -222,13 +222,13 @@ export default {
       }
     },
     passwordComfirm(){
-      if (this.registerData.password != this.registerData.passwordConfirm) {
-        this.notifyA('danger',"两次密码不一样！",'top','center');
-        return false;
-      }
       if (this.registerData.password == "" || 
           this.registerData.username == "") {
         this.notifyA('danger','用户名或密码为空','top','center');
+        return false;
+      }
+      if (this.registerData.password != this.registerData.passwordConfirm) {
+        this.notifyA('danger',"两次密码不一样！",'top','center');
         return false;
       }
       return true;
