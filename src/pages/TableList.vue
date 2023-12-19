@@ -89,11 +89,6 @@ export default {
         columns: [...tableColumns],
         data: [...tableData],
       },
-      table2: {
-        title: "Table on Plain Background",
-        columns: [...tableColumns],
-        data: [...tableData],
-      },
     };
   },
 };

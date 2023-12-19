@@ -6,6 +6,7 @@
       <tr>
         <slot name="columns">
           <th v-for="column in columns" :key="column">{{ column }}</th>
+          <th @click="getSelected">export</th>
         </slot>
       </tr>
     </thead>
@@ -20,6 +21,9 @@
             >
               {{ itemValue(item, column) }}
             </td>
+            <td>
+              <base-checkbox v-model="selected[index]"></base-checkbox>
+            </td>
           </slot>
         </tr>
     </tbody>
@@ -28,6 +32,11 @@
 
 <script>
 export default {
+  data() {
+    return {
+      selected: [],
+    }
+  },
   name: "base-table",
   props: {
     tableClass: {
@@ -57,6 +66,11 @@ export default {
     },
     itemValue(item, column) {
       return item[column.toLowerCase()];
+    },
+    getSelected() {
+      console.log("asd");
+      const selected = this.data.filter((row,index) => this.selected[index]);
+      console.log(selected);
     },
   },
 };
