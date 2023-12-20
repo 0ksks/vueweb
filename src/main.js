@@ -21,6 +21,7 @@ import SocialSharing from "vue-social-sharing";
 import VueGitHubButtons from "vue-github-buttons";
 import "vue-github-buttons/dist/vue-github-buttons.css";
 import App from "./App.vue";
+import {createPinia} from "pinia"
 import "@/assets/scss/white-dashboard.scss";
 import "@/assets/css/nucleo-icons.css";
 import "@/assets/demo/demo.css";
@@ -43,6 +44,8 @@ const router = new VueRouter({
   linkExactActiveClass: "active",
 });
 
+const pinia = createPinia();
+Vue.use(pinia);
 Vue.use(VueRouter);
 Vue.use(SocialSharing);
 Vue.use(VueGitHubButtons, { useCache: true });
