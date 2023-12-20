@@ -4,7 +4,7 @@
       <div class="col-12">
         <card>
           <template slot="header">
-            <h4 class="card-title">Simple Table</h4>
+            <h4 class="card-title" @click="categoryList">Simple Table</h4>
           </template>
           <div class="table-responsive text-left">
             <base-table
@@ -21,11 +21,12 @@
 </template>
 <script>
 import { Card } from "@/components/index";
-
+import { ref } from "vue";
+import { categoryListService } from "@/api/choice.js"
 import BaseTable from "@/components/BaseTable";
 
 const tableColumns = ["question", "a", "b", "c"];
-const tableData = [
+const tableData = ref([
   {
     id: 1,
     question: "Dakota Rice",
@@ -75,19 +76,32 @@ const tableData = [
     b: "Portugal",
     c: "Gloucester",
   },
-];
+]);
+// const categoryList = async()=>{
+//       let result = await categoryListService();
+//       tableData.value = result.data;
+//       console.log(tableData.value);
+// }
 
 export default {
   components: {
     Card,
     BaseTable,
   },
+  methods: {
+    async categoryList(){
+      console.log("a");
+      let result = await categoryListService();
+      tableData.value = result.data;
+      console.log(tableData.value);
+    }
+  },
   data() {
     return {
       table1: {
         title: "Simple Table",
         columns: [...tableColumns],
-        data: [...tableData],
+        data: [...tableData.value],
       },
     };
   },

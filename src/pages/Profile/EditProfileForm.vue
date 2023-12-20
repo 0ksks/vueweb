@@ -169,7 +169,7 @@ import { Card, BaseInput } from "@/components/index";
 import { userRegisterService,userLoginService } from "@/api/user.js";
 import BaseButton from "@/components/BaseButton";
 import NotificationTemplate from "../Notifications/NotificationTemplate"
-
+// import categoryList from "src/pages/TableList.vue";
 
 export default {
   components: {
@@ -205,13 +205,13 @@ export default {
       if(result.code===0){
         this.notifyA('success',result.message,'top','center');
         this.state = 'log';
+        // categoryList();
       }
       else{
         this.notifyA('danger',result.message,'top','center');
       }
     },
     async login(){
-      if (this.passwordComfirm()==false)return;
       let result = await userLoginService(this.registerData);
       if(result.code===0){
         this.notifyA('success',result.message,'top','center');
