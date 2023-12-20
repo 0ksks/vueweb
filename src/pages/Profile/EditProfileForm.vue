@@ -169,9 +169,26 @@ import { Card, BaseInput } from "@/components/index";
 import { userRegisterService,userLoginService } from "@/api/user.js";
 import BaseButton from "@/components/BaseButton";
 import NotificationTemplate from "../Notifications/NotificationTemplate"
+import {useTokenStore} from "@/stores/token.js"
 // import categoryList from "src/pages/TableList.vue";
 
+const tokenStore = useTokenStore();
+
 export default {
+  setup() {
+    const login = async()=>{
+      let result = await userLoginService(this.registerData);
+      if(result.code===0){
+        this.notifyA('success',result.message,'top','center');
+        this.state = 'info';
+        tokenStore.setToken(result.data);
+      }
+      else{
+        this.notifyA('danger',result.message,'top','center');
+      }
+    }
+    return {login}
+  },
   components: {
     Card,
     BaseInput,
@@ -211,16 +228,17 @@ export default {
         this.notifyA('danger',result.message,'top','center');
       }
     },
-    async login(){
-      let result = await userLoginService(this.registerData);
-      if(result.code===0){
-        this.notifyA('success',result.message,'top','center');
-        this.state = 'info';
-      }
-      else{
-        this.notifyA('danger',result.message,'top','center');
-      }
-    },
+    // async login(){
+    //   let result = await userLoginService(this.registerData);
+    //   if(result.code===0){
+    //     this.notifyA('success',result.message,'top','center');
+    //     this.state = 'info';
+    //     tokenStore.setToken(result.data);
+    //   }
+    //   else{
+    //     this.notifyA('danger',result.message,'top','center');
+    //   }
+    // },
     passwordComfirm(){
       if (this.registerData.password == "" || 
           this.registerData.username == "") {
