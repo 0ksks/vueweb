@@ -43,6 +43,9 @@ const router = new VueRouter({
   linkExactActiveClass: "active",
 });
 
+import { createPinia } from "pinia"
+const pinia = createPinia();
+Vue.use(pinia);
 Vue.use(VueRouter);
 Vue.use(SocialSharing);
 Vue.use(VueGitHubButtons, { useCache: true });
@@ -51,9 +54,6 @@ Vue.use(GlobalDirectives);
 Vue.use(RTLPlugin);
 Vue.use(SideBar);
 Vue.use(Notify);
-
-import { createPinia } from "pinia"
-const pinia = createPinia();
 
 new Vue({
   router,
