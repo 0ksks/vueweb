@@ -52,8 +52,12 @@ Vue.use(RTLPlugin);
 Vue.use(SideBar);
 Vue.use(Notify);
 
+import { createPinia } from "pinia"
+const pinia = createPinia();
+
 new Vue({
   router,
   i18n,
+  pinia,
   render: (h) => h(App),
 }).$mount("#app");
