@@ -57,6 +57,9 @@ Vue.use(SideBar);
 Vue.use(Notify);
 import { useTokenStore } from "@/stores/token.js";
 export const tokenStore = useTokenStore();
+import {createPersistedState} from "pinia-persistedstate-plugin";
+const persist = createPersistedState();
+pinia.use(persist);
 new Vue({
   router,
   i18n,

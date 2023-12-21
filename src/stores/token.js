@@ -21,4 +21,7 @@ export const useTokenStore = defineStore(
             isLogin,token,setToken,removeToken,setLogin,setLogout
         }
     },
+    {
+        persist:true
+    }
 );
