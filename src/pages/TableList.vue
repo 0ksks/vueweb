@@ -77,16 +77,17 @@ const tableData = ref([
     c: "Gloucester",
   },
 ]);
-// const categoryList = async()=>{
+// export const categoryList = async()=>{
 //       let result = await categoryListService();
 //       tableData.value = result.data;
 //       console.log(tableData.value);
 // }
-
+import EditProfileForm from "./Profile/EditProfileForm.vue";
 export default {
   components: {
     Card,
     BaseTable,
+    EditProfileForm,
   },
   methods: {
     async categoryList(){

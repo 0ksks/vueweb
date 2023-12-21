@@ -54,7 +54,8 @@ Vue.use(GlobalDirectives);
 Vue.use(RTLPlugin);
 Vue.use(SideBar);
 Vue.use(Notify);
-
+import { useTokenStore } from "@/stores/token.js";
+export const tokenStore = useTokenStore();
 new Vue({
   router,
   i18n,
