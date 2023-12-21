@@ -4,6 +4,13 @@ export const useTokenStore = defineStore(
     "token",
     () => {
         const token = ref("");
+        const isLogin = false;
+        const setLogin = () => {
+            isLogin = true;
+        };
+        const setLogout = () => {
+            isLogin = false;
+        };
         const setToken = (newToken) => {
             token.value = newToken;
         };
@@ -11,7 +18,7 @@ export const useTokenStore = defineStore(
             token.value = "";
         };
         return {
-            token,setToken,removeToken
+            isLogin,token,setToken,removeToken,setLogin,setLogout
         }
     },
 );

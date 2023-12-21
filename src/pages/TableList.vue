@@ -25,69 +25,68 @@ import { ref } from "vue";
 import { categoryListService } from "@/api/choice.js"
 import BaseTable from "@/components/BaseTable";
 
-const tableColumns = ["question", "a", "b", "c","id"];
+const tableColumns = ["categoryName","id"];
 const tableData = ref([
   {
     id: 1,
-    question: "Dakota Rice",
+    categoryName: "Dakota Rice",
     a: "$36.738",
     b: "Niger",
     c: "Oud-Turnhout",
   },
   {
     id: 2,
-    question: "Minerva Hooper",
+    categoryName: "Minerva Hooper",
     a: "$23,789",
     b: "Curaçao",
     c: "Sinaai-Waas",
   },
   {
     id: 3,
-    question: "Sage Rodriguez",
+    categoryName: "Sage Rodriguez",
     a: "$56,142",
     b: "Netherlands",
     c: "Baileux",
   },
   {
     id: 4,
-    question: "Philip Chaney",
+    categoryName: "Philip Chaney",
     a: "$38,735",
     b: "Korea, South",
     c: "Overland Park",
   },
   {
     id: 5,
-    question: "Doris Greene",
+    categoryName: "Doris Greene",
     a: "$63,542",
     b: "Malawi",
     c: "Feldkirchen in Kärnten",
   },
   {
     id: 6,
-    question: "Mason Porter",
+    categoryName: "Mason Porter",
     a: "$98,615",
     b: "Chile",
     c: "Gloucester",
   },
   {
     id: 7,
-    question: "Jon Porter",
+    categoryName: "Jon Porter",
     a: "$78,615",
     b: "Portugal",
     c: "Gloucester",
   },
 ]);
-// import EditProfileForm from "./Profile/EditProfileForm.vue";
 export default {
   components: {
     Card,
     BaseTable,
-    // EditProfileForm,
   },
   methods: {
     async categoryList(){
       let result = await categoryListService();
       tableData.value = result.data;
+      this.$forceUpdate();
       console.log(tableData.value);
       console.log("aaa");
     }

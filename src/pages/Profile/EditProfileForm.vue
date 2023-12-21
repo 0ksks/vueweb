@@ -216,7 +216,6 @@ export default {
         this.notifyA('success',result.message,'top','center');
         this.state = 'info';
         tokenStore.setToken(result.data);
-        // categoryList();
         this.$emit("categoryList");
       }
       else{
