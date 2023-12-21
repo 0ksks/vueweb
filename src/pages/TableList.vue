@@ -84,11 +84,9 @@ export default {
   },
   methods: {
     async categoryList(){
+      console.log("cl use")
       let result = await categoryListService();
-      tableData.value = result.data;
-      this.$forceUpdate();
-      console.log(tableData.value);
-      console.log("aaa");
+      this.table1.data = [...result.data];
     }
   },
   data() {

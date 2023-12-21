@@ -170,22 +170,8 @@ import { userRegisterService,userLoginService } from "@/api/user.js";
 import BaseButton from "@/components/BaseButton";
 import NotificationTemplate from "../Notifications/NotificationTemplate";
 import {tokenStore} from "@/main.js"
-// import categoryList from "src/pages/TableList";
+// import {categoryList} from "src/pages/TableList.vue";
 export default {
-  setup() {
-    const login = async()=>{
-      let result = await userLoginService(this.registerData);
-      if(result.code===0){
-        this.notifyA('success',result.message,'top','center');
-        this.state = 'info';
-        tokenStore.setToken(result.data);
-      }
-      else{
-        this.notifyA('danger',result.message,'top','center');
-      }
-    }
-    return {login}
-  },
   components: {
     Card,
     BaseInput,
@@ -230,7 +216,6 @@ export default {
         this.notifyA('success',result.message,'top','center');
         this.state = 'info';
         tokenStore.setToken(result.data);
-        this.$emit("categoryList");
       }
       else{
         this.notifyA('danger',result.message,'top','center');
@@ -250,7 +235,6 @@ export default {
     },
     notifyA(type, txt, verticalAlign, horizontalAlign) {
       this.notifications.msg = txt;
-      console.log(this.notifications.msg);
       var icon;
       if (type=="success")icon = "tim-icons icon-check-2";
       else if (type=="danger")icon = "tim-icons icon-bell-55"

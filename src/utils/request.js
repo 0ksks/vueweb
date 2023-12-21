@@ -3,11 +3,23 @@
 //导入axios  npm install axios
 import axios from 'axios';
 import NotificationTemplate from "@/pages/Notifications/NotificationTemplate"
+import {useTokenStore} from "@/stores/token.js"
 //定义一个变量,记录公共的前缀  ,  baseURL
 const baseURL = '/api';
 const instance = axios.create({baseURL})
 
-
+instance.interceptors.request.use(
+    (config)=>{
+        const tokenStore = useTokenStore();
+        if(tokenStore.token){
+            config.headers.Authorization = tokenStore.token;
+        }
+        return config;
+    },
+    (err)=>{
+        Promise.reject(err);
+    }
+)
 //添加响应拦截器
 instance.interceptors.response.use(
     result=>{
