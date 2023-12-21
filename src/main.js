@@ -44,7 +44,7 @@ const router = new VueRouter({
   linkExactActiveClass: "active",
 });
 
-import { createPinia } from "pinia"
+// import { createPinia } from "pinia"
 const pinia = createPinia();
 Vue.use(pinia);
 Vue.use(VueRouter);
