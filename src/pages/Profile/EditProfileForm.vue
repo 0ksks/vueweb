@@ -172,6 +172,20 @@ import NotificationTemplate from "../Notifications/NotificationTemplate";
 import {tokenStore} from "@/main.js"
 // import categoryList from "src/pages/TableList";
 export default {
+  setup() {
+    const login = async()=>{
+      let result = await userLoginService(this.registerData);
+      if(result.code===0){
+        this.notifyA('success',result.message,'top','center');
+        this.state = 'info';
+        tokenStore.setToken(result.data);
+      }
+      else{
+        this.notifyA('danger',result.message,'top','center');
+      }
+    }
+    return {login}
+  },
   components: {
     Card,
     BaseInput,
