@@ -4,12 +4,13 @@ export const useTokenStore = defineStore(
     "token",
     () => {
         const token = ref("");
-        const isLogin = false;
+        const isLogin = ref(false);
         const setLogin = () => {
-            isLogin = true;
+            isLogin.value = true;
+            console.log(isLogin.value);
         };
         const setLogout = () => {
-            isLogin = false;
+            isLogin.value = false;
         };
         const setToken = (newToken) => {
             token.value = newToken;

@@ -3,7 +3,7 @@
 //导入axios  npm install axios
 import axios from 'axios';
 import { useTokenStore } from "@/stores/token.js"
-// import routes from "@/router.js"
+import router from "@/router"
 //定义一个变量,记录公共的前缀  ,  baseURL
 const baseURL = '/api';
 const instance = axios.create({baseURL})
@@ -29,7 +29,7 @@ instance.interceptors.response.use(
         console.log(err.response.status);
         if(err.response.status==401){
             alert("401");
-            // routes.push("/user");
+            router.push({name:'user'});
         }else{
             alert("not 401");
             Promise.reject(err);//异步的状态转化成失败的状态

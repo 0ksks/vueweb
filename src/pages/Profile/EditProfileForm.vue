@@ -1,5 +1,5 @@
 <template>
-  <card v-if="state=='log'">
+  <card v-if="!isLogin() &&  state=='log'">
     <template slot="header">
       <h5 class="title">Log in</h5>
     </template>
@@ -28,7 +28,7 @@
       <base-button type="success" fill @click="state = 'reg'">Register</base-button>
     </template>
   </card>
-  <card v-else-if="state=='reg'">
+  <card v-else-if="!isLogin() && state=='reg'">
     <template slot="header">
       <h5 class="title">Register</h5>
     </template>
@@ -199,6 +199,10 @@ export default {
     }
   },
   methods:{
+    isLogin(){
+      console.log(tokenStore.isLogin);
+      return tokenStore.isLogin;
+    },
     async register(){
       if (this.passwordComfirm()==false)return;
       let result = await userRegisterService(this.registerData);
@@ -216,6 +220,7 @@ export default {
         this.notifyA('success',result.message,'top','center');
         this.state = 'info';
         tokenStore.setToken(result.data);
+        tokenStore.setLogin();
       }
       else{
         this.notifyA('danger',result.message,'top','center');
