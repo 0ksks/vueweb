@@ -25,7 +25,7 @@ import { ref } from "vue";
 import { categoryListService } from "@/api/choice.js"
 import BaseTable from "@/components/BaseTable";
 
-const tableColumns = ["question", "a", "b", "c"];
+const tableColumns = ["question", "a", "b", "c","id"];
 const tableData = ref([
   {
     id: 1,
@@ -77,24 +77,19 @@ const tableData = ref([
     c: "Gloucester",
   },
 ]);
-// export const categoryList = async()=>{
-//       let result = await categoryListService();
-//       tableData.value = result.data;
-//       console.log(tableData.value);
-// }
-import EditProfileForm from "./Profile/EditProfileForm.vue";
+// import EditProfileForm from "./Profile/EditProfileForm.vue";
 export default {
   components: {
     Card,
     BaseTable,
-    EditProfileForm,
+    // EditProfileForm,
   },
   methods: {
     async categoryList(){
-      console.log("a");
       let result = await categoryListService();
       tableData.value = result.data;
       console.log(tableData.value);
+      console.log("aaa");
     }
   },
   data() {
